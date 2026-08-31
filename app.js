@@ -1,6 +1,7 @@
 const canvas = document.querySelector('#status-canvas');
 const ctx = canvas.getContext('2d');
 const form = document.querySelector('#status-form');
+const body = document.querySelector('#body');
 const memory = document.querySelector('#memory');
 const memoryCount = document.querySelector('#memory-count');
 const downloadButton = document.querySelector('#download-button');
@@ -129,17 +130,19 @@ function render() {
 
   drawPixelDivider(1036);
   drawText('TODAY I WANT TO REMEMBER', 78, 1094, { font: font(25, 500, 'VT323, Courier New, monospace'), color: colors.gold });
-  roundRect(78, 1120, 868, 194, 12, '#FFFDF5', 'rgba(49,90,64,.25)', 2);
+  roundRect(78, 1120, 868, 260, 12, '#FFFDF5', 'rgba(49,90,64,.25)', 2);
   drawIcon(leaf, 832, 1150, 60, .32); drawIcon(sparkle, 118, 1160, 24, .72);
-  const lines = wrapText(data.memory, 19);
-  lines.slice(0, 3).forEach((line, i) => drawText(line, 142, 1186 + i * 46, { font: font(34, 500), color: colors.ink }));
-  drawText(`记录日期：${data.date}`, 142, 1275, { font: font(21, 500), color: colors.muted });
+  const lines = wrapText(data.memory, 20);
+  lines.slice(0, 5).forEach((line, i) => drawText(line, 142, 1184 + i * 36, { font: font(30, 500), color: colors.ink }));
+  drawText(`记录日期：${data.date}`, 142, 1360, { font: font(21, 500), color: colors.muted });
 
   drawText('留住今天，等以后回头看看。', 512, 1408, { font: font(28, 700), color: colors.forest, align: 'center' });
   drawText('40周孕期实验 · COMMUNITY LOG', 512, 1495, { font: font(22, 500, 'VT323, Courier New, monospace'), color: colors.forest, align: 'center' });
 }
 
-function updateCount() { memoryCount.textContent = [...memory.value].length; }
+function updateCount() {
+  memoryCount.textContent = [...memory.value].length;
+}
 form.addEventListener('input', () => { updateCount(); render(); });
 form.addEventListener('change', render);
 downloadButton.addEventListener('click', () => {

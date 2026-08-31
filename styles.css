@@ -63,7 +63,7 @@ h1 { font-size: clamp(24px, 5vw, 32px); line-height: 1.1; letter-spacing: .04em;
 .field-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px 12px; }
 .field-wide { grid-column: 1 / -1; }
 .memory-field { margin-top: 20px; position: relative; }
-.memory-field small { color: #849388; font-size: 12px; text-align: right; margin-top: -4px; }
+.field > small { color: #849388; font-size: 12px; text-align: right; margin-top: -4px; }
 
 .preview-section { padding-top: 26px; }
 .preview-heading { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 16px; }
