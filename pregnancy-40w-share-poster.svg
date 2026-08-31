@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1200" height="1600" viewBox="0 0 1200 1600">
+  <defs>
+    <filter id="soft" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="8" stdDeviation="8" flood-color="#315A40" flood-opacity=".10"/>
+    </filter>
+  </defs>
+  <rect width="1200" height="1600" fill="#FFF8E9"/>
+  <image xlink:href="assets/status/status-bg.png" x="0" y="1170" width="1200" height="430" preserveAspectRatio="xMidYMax slice" opacity=".94"/>
+  <rect x="38" y="38" width="1124" height="1524" rx="22" fill="none" stroke="#7DA954" stroke-width="4"/>
+  <rect x="56" y="56" width="1088" height="1488" rx="18" fill="none" stroke="#D3A14B" stroke-opacity=".42" stroke-width="2"/>
+  <image xlink:href="assets/status/title-leaf.png" x="92" y="92" width="62" height="62"/>
+  <text x="174" y="134" fill="#315A40" font-family="monospace" font-size="32" font-weight="700" letter-spacing="2">MY PREGNANCY LOG</text>
+  <text x="1080" y="134" text-anchor="end" fill="#708174" font-family="monospace" font-size="24" letter-spacing="1">COMMUNITY</text>
+  <text x="600" y="300" text-anchor="middle" fill="#17372B" font-family="sans-serif" font-size="72" font-weight="800">记录今天的孕期状态</text>
+  <text x="600" y="370" text-anchor="middle" fill="#DD6C61" font-family="sans-serif" font-size="42" font-weight="700">不用标准答案，只记录今天的我。</text>
+  <text x="180" y="478" fill="#D3A14B" font-family="monospace" font-size="30" letter-spacing="2">40周孕期实验 · COMMUNITY</text>
+  <path d="M180 510 H1020" stroke="#315A40" stroke-opacity=".22" stroke-width="3" stroke-dasharray="4 14"/>
+  <image xlink:href="assets/diary.png" x="135" y="570" width="250" height="250" preserveAspectRatio="xMidYMid meet" filter="url(#soft)"/>
+  <rect x="410" y="540" width="650" height="330" rx="18" fill="#FFFDF5" stroke="#D3A14B" stroke-opacity=".65" stroke-width="3"/>
+  <text x="460" y="625" fill="#315A40" font-family="sans-serif" font-size="38" font-weight="800">填写你的今天</text>
+  <text x="460" y="695" fill="#17372B" font-family="sans-serif" font-size="31">孕周 · 精神 · 睡眠 · 身体感受</text>
+  <text x="460" y="750" fill="#17372B" font-family="sans-serif" font-size="31">食欲 · 活动 · 心情 · 一句话记录</text>
+  <text x="460" y="820" fill="#708174" font-family="sans-serif" font-size="26">本地填写，实时生成你的游戏状态卡</text>
+  <image xlink:href="assets/status/title-sparkle.png" x="103" y="952" width="44" height="44"/>
+  <text x="600" y="1012" text-anchor="middle" fill="#17372B" font-family="sans-serif" font-size="46" font-weight="800">留住今天，等以后回头看看。</text>
+  <rect x="155" y="1080" width="890" height="8" rx="4" fill="#D3A14B" fill-opacity=".5"/>
+  <rect x="160" y="1230" width="420" height="260" rx="18" fill="#FFFDF5" stroke="#D3A14B" stroke-width="3" filter="url(#soft)"/>
+  <text x="370" y="1300" text-anchor="middle" fill="#D3A14B" font-family="monospace" font-size="30" font-weight="700">扫码开始记录</text>
+  <text x="370" y="1350" text-anchor="middle" fill="#315A40" font-family="sans-serif" font-size="27">打开你的孕期状态卡</text>
+  <text x="370" y="1405" text-anchor="middle" fill="#708174" font-family="monospace" font-size="22">40w.lifegamedesign.top</text>
+  <image xlink:href="qr-40w-lifegamedesign-top.png" x="690" y="1185" width="300" height="300" preserveAspectRatio="xMidYMid meet"/>
+  <text x="600" y="1540" text-anchor="middle" fill="#315A40" font-family="monospace" font-size="22" letter-spacing="1">40周孕期实验 · COMMUNITY LOG</text>
+</svg>
