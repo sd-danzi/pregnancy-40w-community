@@ -26,14 +26,14 @@ const sparkle = new Image();
 const background = new Image();
 const activityIcon = new Image();
 const appetiteIcon = new Image();
-const recorder = new Image();
+const diary = new Image();
 const statusIcons = Object.fromEntries(['energy', 'sleep', 'body', 'mood'].map(name => [name, new Image()]));
 leaf.src = './assets/status/title-leaf.png';
 sparkle.src = './assets/status/title-sparkle.png';
 background.src = './assets/status/status-bg.png';
 activityIcon.src = './assets/activity.png';
 appetiteIcon.src = './assets/appetite.png';
-recorder.src = './assets/recorder.png';
+diary.src = './assets/diary.png';
 Object.entries(statusIcons).forEach(([name, image]) => { image.src = `./assets/status/${name}.png`; });
 
 function value(id) { return document.querySelector(`#${id}`).value.trim(); }
@@ -133,10 +133,10 @@ function render() {
   drawPixelDivider(1036);
   drawText('TODAY I WANT TO REMEMBER', 78, 1094, { font: font(25, 500, 'VT323, Courier New, monospace'), color: colors.gold });
   roundRect(78, 1120, 868, 260, 12, '#FFFDF5', 'rgba(49,90,64,.25)', 2);
-  drawIcon(recorder, 824, 1160, 104, .92); drawIcon(sparkle, 118, 1160, 24, .72);
+  drawIcon(diary, 92, 1188, 100, .94); drawIcon(sparkle, 202, 1168, 24, .72);
   const lines = wrapText(data.memory, 20);
-  lines.slice(0, 5).forEach((line, i) => drawText(line, 142, 1184 + i * 36, { font: font(30, 500), color: colors.ink }));
-  drawText(`记录日期：${data.date}`, 142, 1360, { font: font(21, 500), color: colors.muted });
+  lines.slice(0, 5).forEach((line, i) => drawText(line, 220, 1184 + i * 36, { font: font(30, 500), color: colors.ink }));
+  drawText(`记录日期：${data.date}`, 220, 1360, { font: font(21, 500), color: colors.muted });
 
   drawText('留住今天，等以后回头看看。', 512, 1408, { font: font(28, 700), color: colors.forest, align: 'center' });
   drawText('40周孕期实验 · COMMUNITY LOG', 512, 1495, { font: font(22, 500, 'VT323, Courier New, monospace'), color: colors.forest, align: 'center' });
@@ -172,7 +172,7 @@ Promise.all([
   new Promise(resolve => { background.onload = resolve; background.onerror = resolve; }),
   new Promise(resolve => { activityIcon.onload = resolve; activityIcon.onerror = resolve; }),
   new Promise(resolve => { appetiteIcon.onload = resolve; appetiteIcon.onerror = resolve; }),
-  new Promise(resolve => { recorder.onload = resolve; recorder.onerror = resolve; }),
+  new Promise(resolve => { diary.onload = resolve; diary.onerror = resolve; }),
   ...Object.values(statusIcons).map(image => new Promise(resolve => { image.onload = resolve; image.onerror = resolve; })),
 ]).then(render);
 updateCount();
