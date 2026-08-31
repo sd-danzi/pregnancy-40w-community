@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content="#f6eedc" />
+    <title>MY PREGNANCY LOG · Community</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <main class="app-shell">
+      <header class="app-header">
+        <div class="brand-lockup">
+          <img class="brand-leaf" src="./assets/status/title-leaf.png" alt="" />
+          <div>
+            <p class="eyebrow">MY PREGNANCY LOG</p>
+            <h1>我的孕期状态</h1>
+          </div>
+        </div>
+        <p class="header-note">COMMUNITY · 只保存在此页面</p>
+      </header>
+
+      <section class="intro" aria-labelledby="intro-title">
+        <span class="intro-mark" aria-hidden="true">✦</span>
+        <div>
+          <h2 id="intro-title">记下今天的孕期状态</h2>
+          <p>填好下面几项，马上生成一张属于你的状态卡。</p>
+        </div>
+      </section>
+
+      <form id="status-form" class="log-form">
+        <div class="form-section-heading">
+          <span class="section-code">01</span>
+          <div>
+            <h2>今天怎么样？</h2>
+            <p>不用标准答案，按你今天的感受填写。</p>
+          </div>
+        </div>
+
+        <div class="week-date-fields">
+          <label class="field field-week">
+            <span>当前孕周</span>
+            <div class="week-inputs">
+              <span class="week-prefix">W</span>
+              <input id="week-major" type="number" inputmode="numeric" min="1" max="40" value="5" aria-label="孕周大周数" />
+              <span class="week-plus">+</span>
+              <input id="week-minor" type="number" inputmode="numeric" min="0" max="6" value="2" aria-label="孕周小周数" />
+            </div>
+          </label>
+          <label class="field field-date">
+            <span>日期</span>
+            <input id="date" type="text" inputmode="numeric" maxlength="10" pattern="\d{4}\.\d{2}\.\d{2}" placeholder="2026.08.31" aria-label="记录日期，格式为年.月.日" />
+          </label>
+        </div>
+
+        <div class="field-grid">
+          <label class="field">
+            <span>精神</span>
+            <select id="energy">
+              <option>很没精神</option>
+              <option>有点累</option>
+              <option>还可以</option>
+              <option selected>不错</option>
+              <option>很有精神</option>
+            </select>
+          </label>
+          <label class="field">
+            <span>睡眠</span>
+            <select id="sleep">
+              <option>睡得很好</option>
+              <option selected>还可以</option>
+              <option>不太好</option>
+              <option>醒了几次</option>
+              <option>很难入睡</option>
+            </select>
+          </label>
+          <label class="field field-wide">
+            <span>身体感受</span>
+            <input id="body" type="text" value="暂时没有特别明显的感觉" maxlength="24" />
+          </label>
+          <label class="field">
+            <span>食欲</span>
+            <select id="appetite">
+              <option>和平时差不多</option>
+              <option>比平时好</option>
+              <option>没什么胃口</option>
+              <option>有点变化</option>
+            </select>
+          </label>
+          <label class="field">
+            <span>活动</span>
+            <select id="activity">
+              <option>基本没怎么动</option>
+              <option selected>日常活动</option>
+              <option>出门走了走</option>
+              <option>活动比较多</option>
+            </select>
+          </label>
+          <label class="field">
+            <span>心情</span>
+            <select id="mood">
+              <option selected>平稳</option>
+              <option>开心</option>
+              <option>有点紧张</option>
+              <option>低落</option>
+              <option>说不清</option>
+            </select>
+          </label>
+        </div>
+
+        <label class="field memory-field">
+          <span>今天最想记住的一件事</span>
+          <textarea id="memory" rows="3" maxlength="48" placeholder="比如：今天第一次觉得自己真的在经历一段新旅程。">今天比昨天更有精神。</textarea>
+          <small><b id="memory-count">10</b> / 48</small>
+        </label>
+      </form>
+
+      <section class="preview-section" aria-labelledby="preview-title">
+        <div class="preview-heading">
+          <div>
+            <span class="section-code">02</span>
+            <h2 id="preview-title">你的状态卡</h2>
+          </div>
+          <span class="live-dot"><i></i>实时预览</span>
+        </div>
+        <div class="preview-wrap">
+          <canvas id="status-canvas" width="1024" height="1536" aria-label="状态卡预览"></canvas>
+        </div>
+        <p class="preview-hint">图片里的文字会由当前页面生成，不会上传任何数据。</p>
+        <button id="download-button" class="primary-button" type="button">生成我的状态卡 <span aria-hidden="true">↓</span></button>
+        <p id="download-status" class="download-status" role="status" aria-live="polite"></p>
+        <a id="fallback-download" class="download-link" href="#" download="community-pregnancy-log.png" hidden>如果没有自动保存，点这里下载 PNG</a>
+      </section>
+
+      <footer>40周孕期实验 · COMMUNITY LOG</footer>
+    </main>
+    <script src="./app.js"></script>
+  </body>
+</html>
