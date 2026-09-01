@@ -1,0 +1,1 @@
+(function (root) { 'use strict'; var allowed = ['visit','begin_memory','begin_status','start_filling','generate_card','save_card','second_visit','second_record']; root.FortyWeekCore.analytics = { track: function (name) { if (allowed.indexOf(name) !== -1 && root.console && console.debug) console.debug('[40w]', name); } }; }(window));
