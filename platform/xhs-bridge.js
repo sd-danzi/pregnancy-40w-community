@@ -15,7 +15,7 @@
       var status = document.getElementById('download-status');
       if (!available()) { status.textContent = '当前不是小红书小工具环境，请先保存图片；进入小红书小工具后可直接发布。'; return; }
       button.disabled = true; status.textContent = '正在打开小红书发布页……';
-      writeTempFile(canvas.toDataURL('image/png')).then(function (result) { return postNote({ title: '40周小记', content: '用40周小记记录今天的身体和心情。', tags: '孕期记录', mediaInfo: { image_resources: [{ url: result.filePath }] } }); }).then(function () { status.textContent = '已打开小红书发布页，请确认后发布。'; }).catch(function () { status.textContent = '发布失败，请先保存图片后重试。'; }).then(function () { button.disabled = false; });
+      writeTempFile(canvas.toDataURL('image/png')).then(function (result) { return postNote({ title: '有喜记', content: '用有喜记记录今天的身体和心情。', tags: '孕期记录', mediaInfo: { image_resources: [{ url: result.filePath }] } }); }).then(function () { status.textContent = '已打开小红书发布页，请确认后发布。'; }).catch(function () { status.textContent = '发布失败，请先保存图片后重试。'; }).then(function () { button.disabled = false; });
     });
     return true;
   }
