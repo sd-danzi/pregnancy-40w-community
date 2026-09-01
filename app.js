@@ -6,7 +6,7 @@ const memory = document.querySelector('#memory');
 const memoryCount = document.querySelector('#memory-count');
 const downloadButton = document.querySelector('#download-button');
 const downloadStatus = document.querySelector('#download-status');
-const fallbackDownload = document.querySelector('#fallback-download');
+const generatedImage = document.querySelector('#generated-image');
 const dateInput = document.querySelector('#date');
 
 const colors = {
@@ -147,23 +147,24 @@ function updateCount() {
 }
 form.addEventListener('input', () => { updateCount(); render(); });
 form.addEventListener('change', render);
-downloadButton.addEventListener('click', () => {
-  canvas.toBlob((blob) => {
-    if (!blob) return;
-    const link = document.createElement('a');
-    const url = URL.createObjectURL(blob);
-    link.download = `community-pregnancy-log-${week().replace('+', '-')}.png`;
-    link.href = url;
-    // Keep the anchor in the DOM so mobile in-app browsers can honor the download gesture.
-    document.body.appendChild(link);
-    link.click();
-    link.remove();
-    fallbackDownload.href = url;
-    fallbackDownload.download = link.download;
-    fallbackDownload.hidden = false;
-    downloadStatus.textContent = '状态卡已生成；如果没有自动保存，请点下方备用入口。';
-    window.setTimeout(() => URL.revokeObjectURL(url), 60000);
-  }, 'image/png');
+downloadButton.addEventListener('click', async () => {
+  const dataUri = canvas.toDataURL('image/png');
+  const miniTool = window.xhs && window.xhs.miniTool;
+  try {
+    if (miniTool && typeof miniTool.writeTempFile === 'function' && typeof miniTool.saveImageToPhotosAlbum === 'function') {
+      const result = await miniTool.writeTempFile({ data: dataUri });
+      await miniTool.saveImageToPhotosAlbum({ filePath: result.filePath });
+      downloadStatus.textContent = '状态卡已保存到相册。';
+      return;
+    }
+    generatedImage.src = dataUri;
+    generatedImage.hidden = false;
+    downloadStatus.textContent = '状态卡已生成；长按图片即可保存。';
+  } catch (error) {
+    downloadStatus.textContent = '状态卡已生成；请长按下方图片保存。';
+    generatedImage.src = dataUri;
+    generatedImage.hidden = false;
+  }
 });
 
 Promise.all([

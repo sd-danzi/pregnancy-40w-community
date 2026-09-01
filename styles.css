@@ -79,8 +79,8 @@ canvas { display: block; width: 100%; height: auto; background: var(--cream); im
 .primary-button:active { transform: translateY(0); }
 .primary-button:focus-visible { outline: 3px solid rgba(211,161,75,.55); outline-offset: 3px; }
 .download-status { min-height: 20px; margin-top: 10px; color: var(--forest); font-size: 13px; text-align: center; }
-.download-link { display: block; width: fit-content; margin: 2px auto 0; color: var(--forest); font-size: 13px; text-decoration: underline; text-underline-offset: 3px; }
-.download-link[hidden] { display: none; }
+.generated-image { display: block; width: min(100%, 280px); height: auto; margin: 12px auto 0; border: 1px solid rgba(49,90,64,.24); }
+.generated-image[hidden] { display: none; }
 footer { padding-top: 28px; color: #738577; font-size: 15px; text-align: center; }
 
 @media (min-width: 640px) {
