@@ -23,8 +23,8 @@
     var detailLines=moment&&moment.detail?wrap(moment.detail,24):[];
     var statusTop=470,statusBottom=914,momentTop=statusBottom+24;
     var titleY=moment?momentTop+130:momentTop+150, detailY=titleY+titleLines.length*54+48;
-    var momentBottom=moment?(detailLines.length?detailY+detailLines.length*44+52:titleY+titleLines.length*54+54):momentTop+220;
-    var momentHeight=Math.max(220,momentBottom-momentTop), sceneTop=momentBottom+48, sceneWidth=1024;
+    var momentBottom=moment?(detailLines.length?detailY+detailLines.length*44+30:titleY+titleLines.length*54+30):titleY+38;
+    var momentHeight=Math.max(190,momentBottom-momentTop), sceneTop=momentBottom+48, sceneWidth=1024;
     var sceneHeight=Math.round(sceneWidth*768/2048), canvasHeight=sceneTop+sceneHeight+24;
     canvas.height=canvasHeight;ctx.clearRect(0,0,1024,canvasHeight);ctx.fillStyle=colors.cream;ctx.fillRect(0,0,1024,canvasHeight);
     if(images.logo.complete&&images.logo.naturalWidth){ctx.save();ctx.imageSmoothingEnabled=false;ctx.drawImage(images.logo,417,18,190,166);ctx.restore();}
