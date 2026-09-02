@@ -4,8 +4,8 @@
   var C = window.FortyWeekCore, canvas = document.getElementById('status-canvas'), ctx = canvas.getContext('2d'), current = null;
   var keys = { profile:'youxiji.profile.v1', draft:'youxiji.draft.v1', records:'youxiji.records.v1' }, storageNotice='🔒 本工具无需登录，记录只保存在当前设备。<br>更换设备或清除浏览器数据后，记录不会同步，生成后请及时保存图片。';
   var colors = { ink:'#17372B', forest:'#315A40', sage:'#7DA954', cream:'#FFF8E9', paperDeep:'#ECE3D2', gold:'#D3A14B', muted:'#708174' };
-  var images = {}, names = ['leaf','sparkle','background','activity','appetite','diary','energy','sleep','body','mood'];
-  names.forEach(function (name) { images[name] = new Image(); images[name].src = name === 'leaf' ? './assets/status/title-leaf.png' : name === 'sparkle' ? './assets/status/title-sparkle.png' : name === 'background' ? './assets/status/status-bg.png' : name === 'activity' ? './assets/activity.png' : name === 'appetite' ? './assets/appetite.png' : name === 'diary' ? './assets/diary.png' : './assets/status/' + name + '.png'; });
+  var images = {}, names = ['leaf','sparkle','firstSparkle','background','activity','appetite','diary','energy','sleep','body','mood'];
+  names.forEach(function (name) { images[name] = new Image(); images[name].src = name === 'leaf' ? './assets/status/title-leaf.png' : name === 'sparkle' ? './assets/status/title-sparkle.png' : name === 'firstSparkle' ? './assets/status/star0.png' : name === 'background' ? './assets/status/status-bg.png' : name === 'activity' ? './assets/activity.png' : name === 'appetite' ? './assets/appetite.png' : name === 'diary' ? './assets/diary.png' : './assets/status/' + name + '.png'; });
   images.logo = new Image(); images.logo.src = './assets/home/logo.png'; images.journeyScene = new Image(); images.journeyScene.src = './assets/home/journey-scene.png';
   function id(x) { return document.getElementById(x); }
   function value(x) { return (id(x).value || '').trim(); }
@@ -20,7 +20,7 @@
   function divider(y) { ctx.save();ctx.strokeStyle='rgba(49,90,64,.20)';ctx.lineWidth=2;ctx.setLineDash([3,9]);ctx.beginPath();ctx.moveTo(84,y);ctx.lineTo(940,y);ctx.stroke();ctx.restore();icon('sparkle',58,y-12,22,.75);icon('sparkle',944,y-12,22,.75); }
   function render(record) {
     var model=C.cardContent.buildCardModel(record), template=model.template, status=template.rows, moment=template.moment;
-    var titleLines=moment?wrapByWidth(moment.title,816,font(39,700)):['今天也值得被记住。'];
+    var firstMoment=moment&&moment.isFirst, titleX=firstMoment?124:104, titleWidth=firstMoment?760:816, titleLines=moment?wrapByWidth(moment.title,titleWidth,font(39,700)):['今天也值得被记住。'];
     var detailLines=moment&&moment.detail?wrapByWidth(moment.detail,816,font(28,500)):[];
     var statusTop=470,statusBottom=914,momentTop=statusBottom+24;
     var titleY=moment?momentTop+130:momentTop+150, detailY=titleY+titleLines.length*54+48;
@@ -36,7 +36,7 @@
     var pairs=[[status[1],status[3]],[status[4],status[5]]];pairs.forEach(function(pair,row){var y=690+row*94;ctx.strokeStyle='rgba(211,161,75,.30)';ctx.lineWidth=2;ctx.setLineDash([8,8]);ctx.beginPath();ctx.moveTo(104,y-50);ctx.lineTo(920,y-50);ctx.stroke();ctx.setLineDash([]);pair.forEach(function(item,col){var x=col?520:106;icon(item.icon,x,y-32,45,.95);text(item.label,x+62,y+3,{font:font(27,700)});text(item.value,x+350,y+3,{font:font(24,500),align:'right'});});});
     var body=status[2];rr(86,832,852,58,12,'rgba(238,243,220,.7)','rgba(125,169,84,.30)',2);icon(body.icon,108,841,40,.95);text(body.label,166,869,{font:font(25,700)});text(body.value,900,869,{font:font(23,500),align:'right',maxWidth:700});
     rr(62,momentTop,900,momentHeight,18,'rgba(255,253,245,.9)','rgba(211,161,75,.72)',3);text('✦  今天留下的瞬间  ✦',512,momentTop+46,{font:font(28,700),align:'center',color:colors.gold});
-    if(moment){if(moment.isFirst)icon('sparkle',68,titleY-40,30,.95);titleLines.forEach(function(line,i){text(line,104,titleY+i*54,{font:font(39,700),maxWidth:816});});detailLines.forEach(function(line,i){text(line,104,detailY+i*44,{font:font(28,500),color:colors.ink,maxWidth:816});});}else{text('今天也值得被记住。',104,titleY,{font:font(32,700)});}
+    if(moment){if(firstMoment)icon('firstSparkle',76,titleY-42,42,.95);titleLines.forEach(function(line,i){text(line,titleX,titleY+i*54,{font:font(39,700),maxWidth:titleWidth});});detailLines.forEach(function(line,i){text(line,104,detailY+i*44,{font:font(28,500),color:colors.ink,maxWidth:816});});}else{text('今天也值得被记住。',104,titleY,{font:font(32,700)});}
     if(images.journeyScene.complete&&images.journeyScene.naturalWidth){ctx.save();ctx.imageSmoothingEnabled=false;ctx.drawImage(images.journeyScene,0,sceneTop,sceneWidth,sceneHeight);ctx.restore();}var avatar=new Image();avatar.src='./assets/youxiji/'+model.shell.avatarId+'.png';avatar.onload=function(){var avatarWidth=48,avatarHeight=Math.round(avatarWidth*avatar.naturalHeight/avatar.naturalWidth),roadAvatarY=sceneTop+sceneHeight-150;ctx.save();ctx.imageSmoothingEnabled=false;ctx.drawImage(avatar,0,0,avatar.naturalWidth,avatar.naturalHeight,690,roadAvatarY,avatarWidth,avatarHeight);ctx.restore();};
   }
   function read(key,fallback){try{return JSON.parse(localStorage.getItem(key)||'null')||fallback;}catch(e){return fallback;}}
