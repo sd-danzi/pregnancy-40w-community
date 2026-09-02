@@ -1,6 +1,6 @@
 (function () {
   'use strict';
-  var homeStyles = document.createElement('link'); homeStyles.rel = 'stylesheet'; homeStyles.href = './home.css'; document.head.appendChild(homeStyles);
+  var homeStyles = document.createElement('link'); homeStyles.rel = 'stylesheet'; homeStyles.href = './home.css'; document.head.appendChild(homeStyles); document.querySelector('.scene-bg').src = './assets/home/journey-scene.png';
   var C = window.FortyWeekCore, canvas = document.getElementById('status-canvas'), ctx = canvas.getContext('2d'), current = null;
   var keys = { profile:'youxiji.profile.v1', draft:'youxiji.draft.v1', records:'youxiji.records.v1' };
   var colors = { ink:'#17372B', forest:'#315A40', sage:'#7DA954', cream:'#FFF8E9', paperDeep:'#ECE3D2', gold:'#D3A14B', muted:'#708174' };
