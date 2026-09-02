@@ -20,7 +20,7 @@
   function divider(y) { ctx.save();ctx.strokeStyle='rgba(49,90,64,.20)';ctx.lineWidth=2;ctx.setLineDash([3,9]);ctx.beginPath();ctx.moveTo(84,y);ctx.lineTo(940,y);ctx.stroke();ctx.restore();icon('sparkle',58,y-12,22,.75);icon('sparkle',944,y-12,22,.75); }
   function render(record) {
     var model=C.cardContent.buildCardModel(record), template=model.template, status=template.rows, moment=template.moment;
-    var firstMoment=moment&&moment.isFirst, titleX=firstMoment?152:104, titleWidth=firstMoment?732:816, titleLines=moment?wrapByWidth(moment.title,titleWidth,font(39,700)):['今天也值得被记住。'];
+    var firstMoment=moment&&moment.isFirst, titleX=firstMoment?152:104, titleWidth=firstMoment?768:816, titleLines=moment?wrapByWidth(moment.title,titleWidth,font(39,700)):['今天也值得被记住。'];
     var detailLines=moment&&moment.detail?wrapByWidth(moment.detail,816,font(28,500)):[];
     var statusTop=470,statusBottom=914,momentTop=statusBottom+24;
     var titleY=moment?momentTop+130:momentTop+150, detailY=titleY+titleLines.length*54+48;
