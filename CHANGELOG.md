@@ -1,5 +1,16 @@
 # Changelog
 
+## 2026-09-02 · 有喜记 V0.1 Final / Maintenance Mode
+
+- 将 Web / 小红书离线版收束为单一主路径：首次设置 → 记录今天 → 生成今天的有喜记。
+- 新增本地昵称、8 个像素头像、当前孕周设置；资料会在当前设备复用，不承诺云端或永久保存。
+- 统一 `schemaVersion: 1` 的 `daily_log` Record：日期、孕周标记、`timePrecision: "day"`、profile、六项状态和可选 moments。
+- 保留精神文字档位与绿色进度条；身体感受、事件标题和细节支持自由填写并显示字数上限。
+- 增加草稿恢复和旧记录迁移；不上传孕期内容，不添加账号、社区、连续打卡、统计敏感文本或医学判断。
+- 共享现有记录卡 Shell 与 Canvas 视觉，普通 Web 仅保存图片；小红书环境才显示并调用发布能力。
+- 更新匿名事件接口为 `app_open`、`record_start`、`record_form_valid`、`card_generate_*`、`post_note_*`、`image_save_*`、`return_open`。
+- 增加本 README 与最终测试清单；本版本完成后进入 Maintenance Mode。
+
 ## 2026-09-01 · 40周小记 V0.1 Core
 
 - 将首页改为两个明确入口：记录一件事、快速记录今天的状态。
