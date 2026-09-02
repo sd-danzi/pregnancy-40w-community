@@ -19,7 +19,7 @@
   function divider(y) { ctx.save();ctx.strokeStyle='rgba(49,90,64,.20)';ctx.lineWidth=2;ctx.setLineDash([3,9]);ctx.beginPath();ctx.moveTo(84,y);ctx.lineTo(940,y);ctx.stroke();ctx.restore();icon('sparkle',58,y-12,22,.75);icon('sparkle',944,y-12,22,.75); }
   function render(record) {
     var model=C.cardContent.buildCardModel(record), template=model.template, status=template.rows, moment=template.moment;
-    var titleLines=moment?wrap(moment.title,20):['今天也值得被记住。'];
+    var titleWrap=moment&&moment.isFirst?20:28,titleLines=moment?wrap(moment.title,titleWrap):['今天也值得被记住。'];
     var detailLines=moment&&moment.detail?wrap(moment.detail,24):[];
     var statusTop=470,statusBottom=914,momentTop=statusBottom+24;
     var titleY=moment?momentTop+130:momentTop+150, detailY=titleY+titleLines.length*54+48;
@@ -35,7 +35,7 @@
     var pairs=[[status[1],status[3]],[status[4],status[5]]];pairs.forEach(function(pair,row){var y=690+row*94;ctx.strokeStyle='rgba(211,161,75,.30)';ctx.lineWidth=2;ctx.setLineDash([8,8]);ctx.beginPath();ctx.moveTo(104,y-50);ctx.lineTo(920,y-50);ctx.stroke();ctx.setLineDash([]);pair.forEach(function(item,col){var x=col?520:106;icon(item.icon,x,y-32,45,.95);text(item.label,x+62,y+3,{font:font(27,700)});text(item.value,x+350,y+3,{font:font(24,500),align:'right'});});});
     var body=status[2];rr(86,832,852,58,12,'rgba(238,243,220,.7)','rgba(125,169,84,.30)',2);icon(body.icon,108,841,40,.95);text(body.label,166,869,{font:font(25,700)});text(body.value,900,869,{font:font(23,500),align:'right',maxWidth:700});
     rr(62,momentTop,900,momentHeight,18,'rgba(255,253,245,.9)','rgba(211,161,75,.72)',3);text('✦  今天留下的瞬间  ✦',512,momentTop+46,{font:font(28,700),align:'center',color:colors.gold});
-    if(moment){titleLines.forEach(function(line,i){text(line,104,titleY+i*54,{font:font(39,700),maxWidth:620});});if(moment.isFirst)rr(722,momentTop+82,184,52,26,'rgba(255,248,233,.95)','rgba(211,161,75,.62)',2),text('✦ 这是第一次',814,momentTop+116,{font:font(22,500),align:'center',color:colors.gold});detailLines.forEach(function(line,i){text(line,104,detailY+i*44,{font:font(28,500),color:colors.ink,maxWidth:816});});}else{text('今天也值得被记住。',104,titleY,{font:font(32,700)});}
+    if(moment){titleLines.forEach(function(line,i){text(line,104,titleY+i*54,{font:font(39,700),maxWidth:moment.isFirst?620:816});});if(moment.isFirst)rr(722,momentTop+82,184,52,26,'rgba(255,248,233,.95)','rgba(211,161,75,.62)',2),text('✦ 这是第一次',814,momentTop+116,{font:font(22,500),align:'center',color:colors.gold});detailLines.forEach(function(line,i){text(line,104,detailY+i*44,{font:font(28,500),color:colors.ink,maxWidth:816});});}else{text('今天也值得被记住。',104,titleY,{font:font(32,700)});}
     if(images.journeyScene.complete&&images.journeyScene.naturalWidth){ctx.save();ctx.imageSmoothingEnabled=false;ctx.drawImage(images.journeyScene,0,sceneTop,sceneWidth,sceneHeight);ctx.restore();}var avatar=new Image();avatar.src='./assets/youxiji/'+model.shell.avatarId+'.png';avatar.onload=function(){var avatarWidth=48,avatarHeight=Math.round(avatarWidth*avatar.naturalHeight/avatar.naturalWidth),roadAvatarY=sceneTop+sceneHeight-150;ctx.save();ctx.imageSmoothingEnabled=false;ctx.drawImage(avatar,0,0,avatar.naturalWidth,avatar.naturalHeight,690,roadAvatarY,avatarWidth,avatarHeight);ctx.restore();};
   }
   function read(key,fallback){try{return JSON.parse(localStorage.getItem(key)||'null')||fallback;}catch(e){return fallback;}}
